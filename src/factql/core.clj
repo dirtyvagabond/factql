@@ -1,5 +1,5 @@
 (ns factql.core
-  (:require [funnyplaces.api :as fun]
+  (:require [factual.api :as fact]
             [clojure.walk :as walk]
             [clojure.string :as str]))
 
@@ -35,7 +35,7 @@
    'circle 'factql.core/circle
    'around 'factql.core/around})
 
-(def preds {'and 'factql.core/+and  
+(def preds {'and 'factql.core/+and
             'or 'factql.core/+or
             'search 'factql.core/+search
             'like 'factql.core/+like
@@ -116,19 +116,22 @@
   "Adds a geo proximity filter to query q.
    Expects a hash-map describing a circle, like:
    {:lat 34.06021 :lon -118.4183 :miles 3}
-  
+
    Only supports :miles"
   [q {:keys [lat lon miles]}]
   (circle q {:center [lat lon] :miles miles}))
 
 ;; --- DSL ---
 
-(defn factql! [key secret]
-  (fun/factual! key secret))
+(defn factql!
+  "Establishes your oauth credentials for Factual. You only need to
+   do this once for the lifetime of your application."
+  [key secret]
+  (fact/factual! key secret))
 
 (defn exec [query]
   (let [table (:table (meta query))]
-    (fun/fetch-q table query)))
+    (fact/fetch table query)))
 
 (defn select* [table]
   (with-meta
@@ -151,12 +154,12 @@
     `(let [query# (-> (select* ~(name table)) ~@xform)]
        (exec query#))))
 
+(defmacro schema [table]
+  `(fact/schema ~(name table)))
 
-(defn evan [tokens]
-(first
-  (reduce (fn [[indexes counter] token]
-            (if (= \X token)
-              [(conj indexes nil) counter]
-              [(conj indexes counter) (inc counter)]))
-          [[] 0]
-          tokens)))
+(defn resolve-vals
+  "Direct support for Resolve. values must be a hashmap, where keys
+   are valid attributes for the schema, and values are the values on
+   which to match."
+  [values]
+  (fact/resolve values))
