@@ -31,6 +31,8 @@ Before your FactQL queries can run, you must provide your Factual API key and se
 (factql! "YOUR-KEY" "YOUR-SECRET")
 ```
 
+If you don't have a Factual API account yet, [it's free and easy to get one](https://www.factual.com/api-keys/request).
+
 # select
 
 <tt>select</tt> takes a table name and an optional set of clauses, such as a <tt>where</tt> clause. Evaluating <tt>select</tt> will run the query against Factual and return a sequence of results hash-maps.
