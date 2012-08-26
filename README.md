@@ -21,7 +21,7 @@ FactQL is hosted at [Clojars](http://clojars.org/factql). Add this to your proje
 ```clojure
 [factql "1.0.1"]
 ```
-The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Fatual's data platform.
+The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Factual's data platform.
 
 # Authentication
 
