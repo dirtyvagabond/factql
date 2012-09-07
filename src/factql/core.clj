@@ -1,7 +1,8 @@
 (ns factql.core
   (:require [factual.api :as fact]
             [clojure.walk :as walk]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [sosueme.conf :as conf]))
 
 ;; --- helpers ---
 
@@ -125,9 +126,21 @@
 
 (defn factql!
   "Establishes your oauth credentials for Factual. You only need to
-   do this once for the lifetime of your application."
-  [key secret]
-  (fact/factual! key secret))
+   do this once for the lifetime of your application.
+
+   The no-args variation will read your auth from ~/.factual/factual-auth.yaml.
+   factual-auth.yaml should look like:
+     ---
+     key: MY_KEY
+     secret: MY_SECRET
+
+   The 2 args variation expects your key as the first argument and your secret
+   as the second."
+  ([]
+     (let [{:keys [key secret]} (conf/dot-factual "factual-auth.yaml")]
+       (factql! key secret)))
+  ([key secret]
+     (fact/factual! key secret)))
 
 (defn exec [query]
   (let [table (:table (meta query))]

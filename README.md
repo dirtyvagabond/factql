@@ -31,6 +31,19 @@ Before your FactQL queries can run, you must provide your Factual API key and se
 (factql! "YOUR-KEY" "YOUR-SECRET")
 ```
 
+Alternatively, if you have a valid factual-auth.yaml in ~/.factual, you can just do this...
+
+```clojure
+(factql!)
+```
+
+... in which case, it's expected that ~/.factual/factual-auth.yaml looks like:
+```yaml
+---
+key: MY_KEY
+secret: MY_SECRET
+```
+
 # select
 
 <tt>select</tt> takes a table name and an optional set of clauses, such as a <tt>where</tt> clause. Evaluating <tt>select</tt> will run the query against Factual and return a sequence of results hash-maps.
