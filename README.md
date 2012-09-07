@@ -21,7 +21,7 @@ FactQL is hosted at [Clojars](http://clojars.org/factql). Add this to your proje
 ```clojure
 [factql "1.0.1"]
 ```
-The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Fatual's data platform.
+The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Factual's data platform.
 
 # Authentication
 
@@ -43,6 +43,8 @@ Alternatively, if you have a valid factual-auth.yaml in ~/.factual, you can just
 key: MY_KEY
 secret: MY_SECRET
 ```
+
+If you don't have a Factual API account yet, [it's free and easy to get one](https://www.factual.com/api-keys/request).
 
 # select
 
