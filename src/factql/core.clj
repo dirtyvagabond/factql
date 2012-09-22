@@ -124,7 +124,7 @@
 
 ;; --- DSL ---
 
-(defn factql!
+(defn init!
   "Establishes your oauth credentials for Factual. You only need to
    do this once for the lifetime of your application.
 
@@ -134,13 +134,17 @@
      key: MY_KEY
      secret: MY_SECRET
 
+   The 1 arg variation expects a hash-map with :key and :secret.
+
    The 2 args variation expects your key as the first argument and your secret
    as the second."
   ([]
      (let [{:keys [key secret]} (conf/dot-factual "factual-auth.yaml")]
-       (factql! key secret)))
+       (init! key secret)))
   ([key secret]
-     (fact/factual! key secret)))
+     (fact/factual! key secret))
+  ([{:keys [key secret]}]
+     (init! key secret)))
 
 (defn exec [query]
   (let [table (:table (meta query))]

@@ -19,7 +19,7 @@ Here's a FactQL statement that finds restaurants near a lat lon, where each rest
 FactQL is hosted at [Clojars](http://clojars.org/factql). Add this to your project dependencies:
 
 ```clojure
-[factql "1.0.1"]
+[factql "1.0.2"]
 ```
 The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Factual's data platform.
 
@@ -28,13 +28,13 @@ The factql.core namespace exposes functions and macros that form a concise, SQL-
 Before your FactQL queries can run, you must provide your Factual API key and secret:
 
 ```clojure
-(factql! "YOUR-KEY" "YOUR-SECRET")
+(init! "YOUR-KEY" "YOUR-SECRET")
 ```
 
 Alternatively, if you have a valid factual-auth.yaml in ~/.factual, you can just do this...
 
 ```clojure
-(factql!)
+(init!)
 ```
 
 ... in which case, it's expected that ~/.factual/factual-auth.yaml looks like:
