@@ -19,7 +19,7 @@ Here's a FactQL statement that finds restaurants near a lat lon, where each rest
 FactQL is hosted at [Clojars](http://clojars.org/factql). Add this to your project dependencies:
 
 ```clojure
-[factql "1.0.2"]
+[factql "1.0.3"]
 ```
 The factql.core namespace exposes functions and macros that form a concise, SQL-like Clojure DSL for interacting with Factual's data platform.
 

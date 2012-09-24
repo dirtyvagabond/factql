@@ -1,6 +1,6 @@
-## 1.0.2
+## 1.0.3
 
- * Changed factql! to init!; added support for hash-map variant
+  * Changed factql! to init!; added support for hash-map variant
 
 ## 1.0.1
 
